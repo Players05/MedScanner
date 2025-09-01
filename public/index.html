@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedScanner Prototype</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script defer src="/script.js"></script>
+    <script>
+        window.APP_CONFIG = {
+            defaultLang: 'en'
+        };
+    </script>
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MedScanner</h1>
+            <p class="subtitle">Prescription & Lab Report Analyzer (Prototype)</p>
+        </header>
+
+        <section class="card">
+            <h2>Prescription Analyzer</h2>
+            <div class="camera-section">
+                <h3>Take Photo</h3>
+                <video id="prescriptionCamera" autoplay playsinline style="display: none; width: 100%; max-width: 400px; border-radius: 8px;"></video>
+                <canvas id="prescriptionCanvas" style="display: none;"></canvas>
+                <div class="camera-controls">
+                    <button type="button" id="prescriptionStartCamera">Start Camera</button>
+                    <button type="button" id="prescriptionCapture" style="display: none;">Capture Photo</button>
+                    <button type="button" id="prescriptionRetake" style="display: none;">Retake</button>
+                    <button type="button" id="prescriptionCloseCamera" style="display: none;">Close Camera</button>
+                </div>
+                <div id="prescriptionPreview" style="display: none;">
+                    <img id="prescriptionPreviewImg" style="width: 100%; max-width: 400px; border-radius: 8px;">
+                </div>
+            </div>
+            <form id="formPrescription">
+                <div class="row">
+                    <label for="prescriptionFile">Or Upload image (JPG/PNG, max 5MB)</label>
+                    <input id="prescriptionFile" name="file" type="file" accept="image/jpeg,image/png" />
+                </div>
+                <div class="row">
+                    <label for="prescriptionLang">Language</label>
+                    <select id="prescriptionLang" name="lang">
+                        <option value="en">English</option>
+                        <option value="hi">Hindi</option>
+                        <option value="mr">Marathi</option>
+                    </select>
+                </div>
+                <button type="submit">Analyze Prescription</button>
+            </form>
+            <div class="progress" id="prescriptionLoading" hidden>Processing…</div>
+            <div id="prescriptionResult" class="result"></div>
+            <div class="tts-controls" id="prescriptionTTSControls" style="display: none;">
+                <button type="button" id="prescriptionTTSBtn" class="tts-btn">🔊 Listen to Analysis</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Lab Report Analyzer</h2>
+            <div class="camera-section">
+                <h3>Take Photos</h3>
+                <video id="reportCamera" autoplay playsinline style="display: none; width: 100%; max-width: 400px; border-radius: 8px;"></video>
+                <canvas id="reportCanvas" style="display: none;"></canvas>
+                <div class="camera-controls">
+                    <button type="button" id="reportStartCamera">Start Camera</button>
+                    <button type="button" id="reportCapture" style="display: none;">Capture Photo</button>
+                    <button type="button" id="reportRetake" style="display: none;">Retake</button>
+                    <button type="button" id="reportCloseCamera" style="display: none;">Close Camera</button>
+                </div>
+                <div id="reportPreview" style="display: none;">
+                    <div id="reportCapturedImages"></div>
+                </div>
+            </div>
+            <form id="formReport">
+                <div class="row">
+                    <label for="reportFiles">Or Upload images (JPG/PNG, multiple allowed, max 5MB each)</label>
+                    <input id="reportFiles" name="files" type="file" accept="image/jpeg,image/png" multiple />
+                </div>
+                <div class="row">
+                    <label for="reportLang">Language</label>
+                    <select id="reportLang" name="lang">
+                        <option value="en">English</option>
+                        <option value="hi">Hindi</option>
+                        <option value="mr">Marathi</option>
+                    </select>
+                </div>
+                <button type="submit">Analyze Lab Report</button>
+            </form>
+            <div class="progress" id="reportLoading" hidden>Processing…</div>
+            <div id="reportResult" class="result"></div>
+            <div class="tts-controls" id="reportTTSControls" style="display: none;">
+                <button type="button" id="reportTTSBtn" class="tts-btn">🔊 Listen to Analysis</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>History (latest 100)</h2>
+            <button id="btnLoadHistory">Refresh History</button>
+            <div id="history" class="history"></div>
+        </section>
+
+        <footer>
+            <small>Privacy: Images are not stored. OCR text and summaries only.</small>
+        </footer>
+    </div>
+</body>
+<!-- End -->
+</html>
+
+
