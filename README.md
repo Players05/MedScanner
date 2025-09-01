@@ -99,7 +99,7 @@ Due to hackathon time limits, we couldn't implement:
 
 ## 🤝 **Contributing**
 
-This project was developed during the Prarambh Hackathon. Feel free to contribute and expand its features!
+This project was developed during the Prarambh Hackathon.
 
 ---
 
